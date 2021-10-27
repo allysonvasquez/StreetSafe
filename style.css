@@ -1,3 +1,35 @@
+/* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: white;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    font: 14px Roboto, Arial, sans-serif;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+  background: #C0C0C0;
+  color: white;
+}
+
+/* Main content */
+.main {
+  margin-top: 20px; /* Add a top margin to avoid content overlay */
+}
+
+
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -8,7 +40,7 @@
 html,
 body {
   height: 100%;
-  margin: 0;
+  margin-top: 20px;
   padding: 0;
 }
 
@@ -16,7 +48,7 @@ body {
 .custom-map-control-button {
   background-color: #fff;
   border: 0;
-  border-radius: 2px;
+  border-radius: 0px;
   box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
   margin: 10px;
   padding: 0 0.5em;
