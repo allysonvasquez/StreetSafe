@@ -1,0 +1,72 @@
+.navigation strong{
+    background-color: lightgreen;
+    color: ghostwhite; 
+    font-weight: bold; 
+    border-radius: 20px; 
+    width: 90%; 
+    height: 90%;
+    padding: 5px 30px 5px 30px; 
+    font-size: 18px;
+}
+.navigation {
+    background-color: white;
+    overflow: hidden;
+}
+
+.navigation a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navigation a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navigation a.active {
+    background-color: lightgrey;
+    color: black;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: #dddddd;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  .Rating {
+    margin: auto;   
+    background-color: #D5DFEA; 
+    font-weight: bold; 
+    border-radius: 20px; 
+    width: 90%; 
+    height: 90%;
+    padding: 5px 30px 5px 30px; 
+    font-size: 18px;
+}
+
+
+.aboutus {
+
+    background-color: #F6BB6B; 
+    font-weight: bold; 
+    border-radius: 20px; 
+    width: 30%; 
+    height: 50%; 
+    padding: 5px 30px 5px 30px; 
+    font-size: 18px;
+    color:white;
+}
+
+
