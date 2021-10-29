@@ -10,7 +10,8 @@ body {
 .navigation strong{
     background-color: lightgreen;
     color: ghostwhite; 
-    font-weight: bold; 
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
     border-radius: 20px; 
     width: 90%; 
     height: 90%;
