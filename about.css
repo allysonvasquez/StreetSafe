@@ -46,7 +46,7 @@ table {
   }
 
   .Rating {
-    margin: auto;   
+    margin: 50px;   
     background-color: #D5DFEA; 
     font-weight: bold; 
     border-radius: 20px; 
@@ -59,6 +59,7 @@ table {
 
 .aboutus {
 
+    margin:  50px;
     background-color: #F6BB6B; 
     font-weight: bold; 
     border-radius: 20px; 

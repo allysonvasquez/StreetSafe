@@ -18,6 +18,7 @@ function errorLocation() {
     setupMap([-80.74, 35.303])
 }
 
+
 //How the map looks on our website
 function setupMap(center) {
     const map = new mapboxgl.Map({
