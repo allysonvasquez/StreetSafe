@@ -1,0 +1,20 @@
+StreetSafe User Manual Guide
+1. Place the folder '4155_StreetSafe-main' into a GitHub folder.
+2. Once placed in a GitHub folder, go to about.html and double
+click it to go to the 'About' pageof StreetSafe. The 'About'
+page shows a description of safety from 1-5 stars. Near the
+bottom of the page is a name of members of group 10 and our goal
+for creating the project.
+3. Click on 'Home' and there will be a pop-up asking if
+the file can know your location, just click 'Allow'.
+After that, a map will appear of your current location.
+On the top right of the website, you can enter the address 
+of the starting place in textbox 'A' and your destination 
+in textbox 'B'. This can be done another way by clicking on 
+the map once, which chooses the starting place, and clicking
+and clicking the map again chooses the destination. After
+entering the starting place and destination, there will 
+be a drop-down box below where you entered the addresses
+that states the instructions to get to your destination. 
+You can change the mode of transportation by clicking on the 
+options: Driving (same as Traffic), Walking, and Cycling.
