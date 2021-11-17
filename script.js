@@ -23,7 +23,8 @@ function errorLocation() {
 function setupMap(center) {
     const map = new mapboxgl.Map({
         container: "map",
-        style: "mapbox://styles/mapbox/streets-v11", //mapbox provides different types of map styles
+        style: 'mapbox://styles/allysonvasquez/ckw2rct6412bp14ozswbuz9xj', //our custom map with crime data loaded into it
+        //"mapbox://styles/mapbox/streets-v11" <- use this for default map with no crime data
         center: center,
         zoom: 15 //zoom values >=15 is good for a pedestrian route map)
     })
