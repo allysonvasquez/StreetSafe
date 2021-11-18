@@ -47,7 +47,7 @@ table {
 
   .Rating {
     margin: 50px;   
-    background-color: #415076; 
+    background-color: #D5DFEA; 
     font-weight: bold; 
     border-radius: 20px; 
     width: 90%; 
@@ -58,7 +58,7 @@ table {
 
 .Icons {
     margin: 50px;   
-    background-color: #415076; 
+    background-color: #D5DFEA; 
     font-weight: bold; 
     border-radius: 20px; 
     width: 90%; 
@@ -78,7 +78,7 @@ table {
     height: 50%; 
     padding: 5px 30px 5px 30px; 
     font-size: 18px;
-    color:black;
+    color:#364363;
 }
 
 .ourimage {
