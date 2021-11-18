@@ -1,3 +1,4 @@
+//DONT REMOVE THIS. Allows access to use mapbox
 mapboxgl.accessToken = "pk.eyJ1IjoiYWxseXNvbnZhc3F1ZXoiLCJhIjoiY2t2YTZzdG44MGl2NTJwdDJwcjRnZHBwMiJ9.iqwBCJ5oXkQhWRUKji-7pg"
 
 //Retrieves the users current location - ALWAYS ALLOW ON YOUR BROWSER
