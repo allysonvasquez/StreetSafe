@@ -40,6 +40,23 @@ function setupMap(center) {
         accessToken: mapboxgl.accessToken,
         profile: "mapbox/walking"
     })
-    //where the drections menu displays on the page
+    //where the directions menu displays on the page
     map.addControl(directions, "top-right")
+
+    map.on('contextmenu', (event) => {
+        const features = map.queryRenderedFeatures(event.point, {
+        layers: ['crime-data']
+        });
+        if (!features.length) {
+        return;
+        }
+        const feature = features[0];
+         
+        const popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(
+        `<h3>${feature.properties.DESCRIPTION}</h3>`
+        )
+        .addTo(map);
+        })
 }
