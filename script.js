@@ -55,7 +55,8 @@ function setupMap(center) {
         const popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
         .setHTML(
-        `<h3>${feature.properties.DESCRIPTION}</h3>`
+        `<h3>${feature.properties.DESCRIPTION}</h3>
+        <p>${feature.properties.DATE} </p>`
         )
         .addTo(map);
         })
