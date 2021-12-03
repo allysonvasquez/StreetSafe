@@ -3,8 +3,10 @@ body {
 }
 
 #map {
-    height: 95vh;
-    width: 100vw;
+    position: absolute;
+    top: 50px;
+    bottom: 5px;
+    width: 100%;
 }
 
 .navigation strong{
