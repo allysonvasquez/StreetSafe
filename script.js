@@ -122,16 +122,16 @@ function setupMap(center) {
       //The following block is the main feature of the algorithm, which calculated the rating
       var longDistance = haversineFunction(locations[0][1]);
       var latDistance = 0.00359971;
-      locations.forEach(loc, i) => {
-        crimeData.forEach(crime, i) => {
+      locations.forEach((loc, i) => {
+        crimeData.forEach((crime, i) => {
           if(crime[6] > loc[1]-latDistance
             && crime[6] < loc[1]+latDistance
             && crime[5] > loc[0]-longDistance
             && crime[5] < loc[0]-longDistance) {
               rating -= .1; //TODO: update to weight based on specific crime type
             }
-        }
-      }
+        })
+      });
 
     map.on('contextmenu', (event) => {
         const features = map.queryRenderedFeatures(event.point, {
