@@ -65,7 +65,7 @@ function setupMap(center) {
       return result;
     }
 
-    //This fetches the .csv file with the crime data
+    //This fetches and parses the .csv file with the crime data
     const request = new XMLHttpRequest();
     request.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -79,6 +79,7 @@ function setupMap(center) {
     request.send();
 
     //defines a function for parsing the .csv file
+    //TODO: refine this so that the values for each crime are mapped to keys from the header. this will allow easy reference later
     function parse(csv) {
       let lines = csv.split(/(?:\r\n|\n)+/).filter(function(el) {return el.length != 0});
       let headers = lines.splice(0, 1)[0].split(",");
@@ -123,10 +124,10 @@ function setupMap(center) {
       var latDistance = 0.00359971;
       locations.forEach(loc, i) => {
         crimeData.forEach(crime, i) => {
-          if(crime.latitude > loc[1]-latDistance
-            && crime.latitude < loc[1]+latDistance
-            && crime.longitude > loc[0]-longDistance
-            && crime.longitude < loc[0]-longDistance) {
+          if(crime[6] > loc[1]-latDistance
+            && crime[6] < loc[1]+latDistance
+            && crime[5] > loc[0]-longDistance
+            && crime[5] < loc[0]-longDistance) {
               rating -= .1; //TODO: update to weight based on specific crime type
             }
         }
