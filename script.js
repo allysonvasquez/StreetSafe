@@ -43,6 +43,26 @@ function setupMap(center) {
     //where the directions menu displays on the page
     map.addControl(directions, "top-right")
 
+    //allows the crime markers to be interactive using right click 
+    //shows description and date of crime
+    map.on('contextmenu', (event) => {
+      const features = map.queryRenderedFeatures(event.point, {
+      layers: ['crime-data']
+      });
+      if (!features.length) {
+      return;
+      }
+      const feature = features[0];
+
+      const popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML(
+      `<h3>${feature.properties.DESCRIPTION}</h3>
+      <p>${feature.properties.DATE} </p>`
+      )
+      .addTo(map);
+    })
+
     //converts degrees to radians, for use in the next function
     function radianConversion(degrees) {
       return degrees * (Math.PI/180)
@@ -132,23 +152,5 @@ function setupMap(center) {
             }
         })
       });
-
-    map.on('contextmenu', (event) => {
-        const features = map.queryRenderedFeatures(event.point, {
-        layers: ['crime-data']
-        });
-        if (!features.length) {
-        return;
-        }
-        const feature = features[0];
-
-        const popup = new mapboxgl.Popup({ offset: [0, -15] })
-        .setLngLat(feature.geometry.coordinates)
-        .setHTML(
-        `<h3>${feature.properties.DESCRIPTION}</h3>
-        <p>${feature.properties.DATE} </p>`
-        )
-        .addTo(map);
-    })
   })
 }
