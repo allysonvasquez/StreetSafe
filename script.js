@@ -43,6 +43,95 @@ function setupMap(center) {
     //where the directions menu displays on the page
     map.addControl(directions, "top-right")
 
+    //converts degrees to radians, for use in the next function
+    function radianConversion(degrees) {
+      return degrees * (Math.PI/180)
+    }
+
+    function degreeConversion(radians) {
+      return radians / (Math.PI/180)
+    }
+
+    //determines how far 400m is in longitude at a given latitude
+    function haversineFunction(lat) {
+      var R = 6371; //radius of the earth in km
+      var dLon = radianConversion(1)/2;
+      var radLat = radianConversion(lat);
+      //these 2 lines calculate the distance of 1 degree of longitude at the provided latitude (in kilometers)
+      var a = Math.cos(radLat) * Math.cos(radLat) * Math.sin(dLon) * Math.sin(dLon);
+      var b = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      //this uses the distance from the previous step to determine how many degrees of longitude equals 400m at the given lat
+      var result = 400/degreeConversion(b);
+      return result;
+    }
+
+    //This fetches the .csv file with the crime data
+    const request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        let file = request.responseText;
+        let crimeData = parse(file);
+        console.log(file);
+        console.log(crimeData);
+      }
+    };
+    request.open("GET", "./data/crime_data_with_lat_long.csv");
+    request.send();
+
+    //defines a function for parsing the .csv file
+    function parse(csv) {
+      let lines = csv.split(/(?:\r\n|\n)+/).filter(function(el) {return el.length != 0});
+      let headers = lines.splice(0, 1)[0].split(",");
+      let valuesRegExp = /(?:\"([^\"]*(?:\"\"[^\"]*)*)\")|([^\",]+)/g;
+
+      let elements = [];
+
+      for (let i = 0; i < lines.length; i++) {
+          let element = {};
+          let j = 0;
+
+          while (matches = valuesRegExp.exec(lines[i])) {
+              var value = matches[1] || matches[2];
+              value = value.replace(/\"\"/g, "\"");
+
+              element[headers[j]] = value;
+              j++;
+          }
+          elements.push(element);
+      }
+      return elements;
+    }
+
+    //defines and runs the main algorith whenever a new route is loaded
+    directions.on('route', (event) => {
+      var routes = event.route;
+      var steps = routes[0].legs[0].steps;
+      let locations = [];
+      let rating = 5;
+
+      //This creates an array of all of the coordinates along a route
+      if(routes != null) {
+        steps.forEach((step, i) => {
+          step.intersections.forEach((item, i) => {
+            locations.push(item.location);
+          });
+        });
+      }
+
+      //The following block is the main feature of the algorithm, which calculated the rating
+      var longDistance = haversineFunction(locations[0][1]);
+      var latDistance = 0.00359971;
+      locations.forEach(loc, i) => {
+        crimeData.forEach(crime, i) => {
+          if(crime.latitude > loc[1]-latDistance
+            && crime.latitude < loc[1]+latDistance
+            && crime.longitude > loc[0]-longDistance
+            && crime.longitude < loc[0]-longDistance) {
+              rating -= .1; //TODO: update to weight based on specific crime type
+            }
+        }
+      }
+
     map.on('contextmenu', (event) => {
         const features = map.queryRenderedFeatures(event.point, {
         layers: ['crime-data']
@@ -51,7 +140,7 @@ function setupMap(center) {
         return;
         }
         const feature = features[0];
-         
+
         const popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
         .setHTML(
@@ -59,5 +148,6 @@ function setupMap(center) {
         <p>${feature.properties.DATE} </p>`
         )
         .addTo(map);
-        })
+    })
+  })
 }
